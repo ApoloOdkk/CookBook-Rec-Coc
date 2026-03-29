@@ -3,7 +3,6 @@ import { View, Text, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, P
 import { styles } from '../styles/AddRecipeStyles';
 
 const AddRecipeScreen = () => {
-  // independent states for each field
   const [recipeName, setRecipeName] = useState('');
   const [category, setCategory] = useState('');
   const [preparationTime, setPreparationTime] = useState('');
@@ -11,7 +10,6 @@ const AddRecipeScreen = () => {
   const [ingredients, setIngredients] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
 
-  // useEffect 
   useEffect(() => {
     const isValid = 
       recipeName.trim() !== '' && 
@@ -23,13 +21,11 @@ const AddRecipeScreen = () => {
     setIsFormValid(isValid);
   }, [recipeName, category, preparationTime, difficulty, ingredients]);
 
-  // Save Function
   const handleSave = () => {
     const summary = `Receta: ${recipeName}\nCat: ${category}\nTiempo: ${preparationTime}\nDif: ${difficulty}\nIngr: ${ingredients}`;
     Alert.alert('¡Receta Guardada!', summary);
   };
 
-  //Cleaning Function
   const handleClear = () => {
     setRecipeName('');
     setCategory('');
@@ -39,65 +35,93 @@ const AddRecipeScreen = () => {
   };
 
   return (
-    // The keyboard does not cover the fields
     <KeyboardAvoidingView 
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
     >
-      <ScrollView contentContainerStyle={styles.form}>
-        <Text style={styles.label}>Nombre de la Receta:</Text>
-        <TextInput 
-          style={styles.input} 
-          value={recipeName} 
-          onChangeText={setRecipeName} 
-          placeholder="Ej: Aji de Gallina"
-        />
+      <ScrollView 
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 60 }}
+      >
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Nueva Receta</Text>
+          <Text style={styles.headerSubtitle}>Completa los campos para registrar tu platillo</Text>
+        </View>
 
-        <Text style={styles.label}>Categoría:</Text>
-        <TextInput 
-          style={styles.input} 
-          value={category} 
-          onChangeText={setCategory} 
-          placeholder="Postre, Entrada, Plato Fuerte..."
-        />
+        <View style={styles.formCard}>
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Nombre de la Receta</Text>
+            <TextInput 
+              style={styles.input} 
+              value={recipeName} 
+              onChangeText={setRecipeName} 
+              placeholder="Ej: Ají de Gallina"
+              placeholderTextColor="#a4b0be"
+            />
+          </View>
 
-        <Text style={styles.label}>Tiempo (minutos):</Text>
-        <TextInput 
-          style={styles.input} 
-          value={preparationTime} 
-          onChangeText={setPreparationTime} 
-          keyboardType="numeric"
-          placeholder="Ej: 45"
-        />
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Categoría</Text>
+            <TextInput 
+              style={styles.input} 
+              value={category} 
+              onChangeText={setCategory} 
+              placeholder="Postre, Entrada, Plato Fuerte..."
+              placeholderTextColor="#a4b0be"
+            />
+          </View>
 
-        <Text style={styles.label}>Dificultad:</Text>
-        <TextInput 
-          style={styles.input} 
-          value={difficulty} 
-          onChangeText={setDifficulty} 
-          placeholder="Fácil, Media, Difícil"
-        />
+          <View style={styles.row}>
+            <View style={[styles.inputGroup, { flex: 1, marginRight: 10 }]}>
+              <Text style={styles.label}>Tiempo (min)</Text>
+              <TextInput 
+                style={styles.input} 
+                value={preparationTime} 
+                onChangeText={setPreparationTime} 
+                keyboardType="numeric"
+                placeholder="45"
+                placeholderTextColor="#a4b0be"
+              />
+            </View>
+            <View style={[styles.inputGroup, { flex: 1 }]}>
+              <Text style={styles.label}>Dificultad</Text>
+              <TextInput 
+                style={styles.input} 
+                value={difficulty} 
+                onChangeText={setDifficulty} 
+                placeholder="Media"
+                placeholderTextColor="#a4b0be"
+              />
+            </View>
+          </View>
 
-        <Text style={styles.label}>Ingredientes:</Text>
-        <TextInput 
-          style={[styles.input, { height: 80 }]} 
-          value={ingredients} 
-          onChangeText={setIngredients} 
-          multiline
-          placeholder="Lista de ingredientes principales..."
-        />
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Ingredientes</Text>
+            <TextInput 
+              style={[styles.input, styles.textArea]} 
+              value={ingredients} 
+              onChangeText={setIngredients} 
+              multiline
+              numberOfLines={4}
+              placeholder="Lista los ingredientes principales..."
+              placeholderTextColor="#a4b0be"
+              textAlignVertical="top"
+            />
+          </View>
+        </View>
 
-        <View style={styles.buttonContainer}>
+        <View style={styles.footer}>
           <TouchableOpacity 
-            style={[styles.saveButton, { opacity: isFormValid ? 1 : 0.5 }]} 
+            style={[styles.saveButton, { opacity: isFormValid ? 1 : 0.6 }]} 
             onPress={handleSave}
             disabled={!isFormValid}
           >
-            <Text style={styles.buttonText}>Guardar Receta</Text>
+            <Text style={styles.saveButtonText}>Guardar Receta</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.clearButton} onPress={handleClear}>
-            <Text style={styles.buttonText}>Limpiar</Text>
+            <Text style={styles.clearButtonText}>Limpiar Formulario</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
