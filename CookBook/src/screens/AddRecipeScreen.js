@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
-import { styles } from '../../styles/AddRecipeStyles';
+import { styles } from '../styles/AddRecipeStyles';
 
 const AddRecipeScreen = () => {
   // independent states for each field

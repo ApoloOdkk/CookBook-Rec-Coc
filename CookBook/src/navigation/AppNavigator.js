@@ -4,10 +4,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // screen imports
-import RecipeListScreen from '../screens/recipes/RecipeListScreen';
-import RecipeDetailScreen from '../screens/recipes/RecipeDetailScreen';
-import AddRecipeScreen from '../screens/add-recipe/AddRecipeScreen';
-import CookingTipsScreen from '../screens/tips/CookingTipsScreen';
+import RecipeListScreen from '../screens/RecipeListScreen';
+import RecipeDetailScreen from '../screens/RecipeDetailScreen';
+import AddRecipeScreen from '../screens/AddRecipeScreen';
+import CookingTipsScreen from '../screens/CookingTipsScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -18,9 +18,9 @@ function RecipeStack(){
     return(
         <Stack.Navigator>
             <Stack.Screen
-                name = "RecipList"
-                componente = {RecipeListScreen}
-                options = {{tittle: 'Recetario'}}
+                name = "RecipeList"
+                component = {RecipeListScreen}
+                options = {{title: 'Recetario'}}
             />
             <Stack.Screen
             name = "RecipeDetail"

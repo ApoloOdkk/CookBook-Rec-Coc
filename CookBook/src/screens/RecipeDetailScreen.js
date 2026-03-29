@@ -1,6 +1,6 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import { styles } from '../../styles/RecipeDetailStyles';
+import { styles } from '../styles/RecipeDetailStyles';
 
 const RecipeDetailScreen = ({ route, navigation }) => {
     const { recipe } = route.params;
@@ -22,19 +22,14 @@ const RecipeDetailScreen = ({ route, navigation }) => {
                 <Text style={styles.sectionTittle}>Ingredientes:</Text>
                 <Text style={styles.text}>{recipe.steps}</Text>
 
-                // favorites button
-
                 <TouchableOpacity
-                style={[styles.backButton, { backgroundColor: isFavorite ? '#f1c40f' : 'bdc3c7'}]}
+                style={[styles.backButton, { backgroundColor: isFavorite ? '#f1c40f' : '#bdc3c7'}]}
                 onPress={() => setIsFavorite(!isFavorite)}
                 >
                     <Text style={styles.buttonText}>
                         {isFavorite ? '⭐ En Favoritos' : '☆ Marcar como Favorito'}
                     </Text>
                 </TouchableOpacity>
-
-                // back button
-
                 <TouchableOpacity
                 style={styles.backButton}
                 onPress={() => navigation.goBack()}

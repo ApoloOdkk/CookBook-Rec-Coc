@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-// Usamos StyleSheet.create como pide el manual 
+// StyleSheet.create use 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -17,7 +17,6 @@ export const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
-    // Sombreado para que parezca tarjeta [cite: 51]
     elevation: 3, 
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },

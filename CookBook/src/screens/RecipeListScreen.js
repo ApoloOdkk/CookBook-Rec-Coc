@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { styles } from '../../styles/RecipeListStyles';
+import { styles } from '../styles/RecipeListStyles';
 
 // example data
 const INITIAL_RECIPES = [
@@ -26,10 +26,10 @@ const RecipeListScreen = ({ navigation }) => {
     // simulate load
     if(loading){
         return (
-            <view style={styles.loader}>
+            <View style={styles.loader}>
                 <ActivityIndicator size="large" color="#0000ff"/>
                 <Text>Cargando Recetas...</Text>
-            </view>
+            </View>
         );
     };
     return(

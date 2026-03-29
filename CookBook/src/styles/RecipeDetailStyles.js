@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 15,
     backgroundColor: '#fff',
-    // shadows for android
     elevation: 5,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
